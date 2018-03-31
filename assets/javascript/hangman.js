@@ -7,10 +7,16 @@ var game = {
     rounds: 0,
     hits: 0,
     misses: 0,
+    wins: 0,
+    losses: 0,
     
     // startGame Function - initializes the game
     startGame: function () 
     {
+        // show game tally
+        document.getElementById("pWins").innerHTML = "Wins: "+this.wins;
+        document.getElementById("pLosses").innerHTML = "Losses: "+this.wins;
+
         if (this.theWord.length > 1) {
             // Check for existence of word
             document.getElementById("pStatus").innerHTML = "Sorry! The word has already been set.";
@@ -56,7 +62,9 @@ var game = {
                 if (this.hits === this.theWord.length) {
                     this.theScore = this.theGuess.splice(0);
                     console.log("winner!!");
-                    document.getElementById("pStatus").innerHTML = "WINNER!!";
+                    document.getElementById("pStatus").innerHTML = "WINNER!! Your keen skills are keeping Mickey handsome.";
+                    this.wins++;
+                    document.getElementById("pWins").innerHTML = "Wins: "+this.wins;  
                     // Show pretty Mickey
                     document.getElementById('mImage').src='assets/images/mickey0.jpeg';
                 }
@@ -67,6 +75,7 @@ var game = {
                 for (i = 0; i < this.theWord.length; i++) {
                     if (this.theGuess[0] === this.theWord[i]) {
                         this.hits++;
+                        document.getElementById("pStatus").innerHTML ="Nice guess!";
                         console.log("hit");
                         console.log(this.rounds);
                         // replace element in theScore array
@@ -76,6 +85,7 @@ var game = {
                 // add up misses
                 if (this.hits === 0 ) {
                     this.misses++;
+                    document.getElementById("pStatus").innerHTML ="You're making Mickey ugly."
                     console.log("miss");
                     // Show ugly Mickey
                 }
@@ -87,12 +97,18 @@ var game = {
                     }
                     if (this.hits === this.theWord.length) {
                         document.getElementById("pStatus").innerHTML = "WINNER!!";
+                        this.wins++;
+                        document.getElementById("pWins").innerHTML = "Wins: "+this.wins;                       
                     }
                 }
             }
             // increment rounds check for game loss
             this.rounds++;
             if (this.rounds >= this.maxAttempts) {
+                // inform user of their harmful ways
+                // document.getElementById("pStatus").innerHTML ="LOSER. You've failed to save Mickey from himself."
+                this.losses++;
+                // could reset game automatically
                 this.resetGame();
             } 
 
