@@ -15,7 +15,7 @@ var game = {
     {
         // show game tally
         document.getElementById("pWins").innerHTML = "Wins: "+this.wins;
-        document.getElementById("pLosses").innerHTML = "Losses: "+this.wins;
+        document.getElementById("pLosses").innerHTML = "Losses: "+this.losses;
 
         if (this.theWord.length > 1) {
             // Check for existence of word
@@ -104,9 +104,11 @@ var game = {
             }
             // increment rounds check for game loss
             this.rounds++;
+            // final warning 
+            if (this.rounds == this.maxAttempts-1) {
+                document.getElementById("pStatus").innerHTML = "WARNING. You're about to make Mickey look really bad."
+                }
             if (this.rounds >= this.maxAttempts) {
-                // inform user of their harmful ways
-                // document.getElementById("pStatus").innerHTML ="LOSER. You've failed to save Mickey from himself."
                 this.losses++;
                 // could reset game automatically
                 this.resetGame();
