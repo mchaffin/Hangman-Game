@@ -8,7 +8,7 @@ var game = {
     hits: 0,
     misses: 0,
     
-    // startGame function initializes the game
+    // startGame Function - initializes the game
     startGame: function () 
     {
         if (this.theWord.length > 1) {
@@ -34,6 +34,7 @@ var game = {
         }
     },
     
+    // attemptGuess Function - main game logic
     attemptGuess: function () 
     {
         if (document.getElementById('inputGuess').value.split("") == "") {
@@ -68,24 +69,32 @@ var game = {
                         this.hits++;
                         console.log("hit");
                         console.log(this.rounds);
+                        // replace element in theScore array
                         this.theScore.splice(i,1,this.theGuess[0]);
                     }
                 }
+                // add up misses
                 if (this.hits === 0 ) {
                     this.misses++;
                     console.log("miss");
                     // Show ugly Mickey
                 }
-                if (this.hits === this.theWord.length) {
-                    this.theScore = this.theGuess.splice(0);
-                    console.log("winner!!");
-                    document.getElementById("pStatus").innerHTML = "WINNER!!";
-                    // Show pretty Mickey
-                    document.getElementById('mImage').src='assets/images/mickey0.jpeg';
+                // check for winner - should be function pass in two arrays return true/false
+                this.hits = 0;
+                for (i = 0 ; i < this.theWord.length; i++) {
+                    if (this.theScore[i] === this.theWord[i]) {
+                        this.hits++;
+                    }
+                    if (this.hits === this.theWord.length) {
+                        document.getElementById("pStatus").innerHTML = "WINNER!!";
+                    }
                 }
             }
-            // increment rounds
+            // increment rounds check for game loss
             this.rounds++;
+            if (this.rounds >= this.maxAttempts) {
+                this.resetGame();
+            } 
 
             // loop through array for display
             var pval = "";
@@ -97,15 +106,14 @@ var game = {
             document.getElementById('mImage').src='assets/images/mickey'+this.misses+'.jpeg';
         }
     },
-    // clear out any array passed into the function
+    // clearArry Function - clear out any array passed into the function
     clearArray: function(array) {
         while (array.length) {
             array.pop();
         }
     },
-
+    // resetGame Funtion - reset all arrays and variables, clear screen
     resetGame: function() {
-        // reset all arrays and variables, clear screen
         this.clearArray(this.theWord);
         this.clearArray(this.theGuess);
         this.clearArray(this.theScore);
@@ -113,11 +121,12 @@ var game = {
         this.rounds = 0;
         this.hits = 0;
         this.misses = 0;
+        document.getElementById('mImage').src='assets/images/mickey0.jpeg';
         document.getElementById('pStatus').innerHTML = "";
         document.getElementById('pHidden').innerHTML = "";
         document.getElementById('pScore').innerHTML = "";
         document.getElementById('pRounds').innerHTML = "";
-
+        document.getElementById('inputWord').value = "";
+        document.getElementById('inputGuess').value = "";
     },
-
   }; //end object
