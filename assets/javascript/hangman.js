@@ -58,6 +58,9 @@ var game = {
                         this.hits++;
                         console.log("hit");
                     }
+                    else {
+                        this.misses++;
+                    }
                 }
                 if (this.hits === this.theWord.length) {
                     this.theScore = this.theGuess.splice(0);
@@ -110,6 +113,7 @@ var game = {
                 }
             if (this.rounds > this.maxAttempts) {
                 this.losses++;
+                document.getElementById("pLosses").innerHTML = "Losses: "+this.losses; 
                 // could reset game automatically
                 this.resetGame();
             } 
