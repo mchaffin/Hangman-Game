@@ -1,0 +1,35 @@
+body { 
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    
+}
+
+p {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px;
+
+}
+
+#pStatus {
+    color: red;
+}
+
+#pHidden {
+    color: silver;
+}
+
+h1 {
+    font-size: 30px;
+    padding: 5px;
+}
+
+h3 {
+    font-size: 20px;
+    padding: 5px;
+}
+
+img {
+    padding: 30px;
+}

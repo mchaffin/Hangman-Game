@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <title>HangMan</title>
+</head>
+<body>
+    <h1>HangMan Game</h1>
+    <h3>Mickey Rourke Edition</h3>
+
+    <img id="mImage" src="assets/images/mickey0.jpeg" style="width:100px">
+
+    <!-- Show Status Updates -->
+    <p id="pStatus"></p>
+
+    <!-- Get User Input -->
+    <p>Enter your secret word:</p>
+    <input type="password" name="word" onfocus="this.value=''" id="inputWord"/>
+    <button onclick="game.startGame();">Enter</button>
+    <br>
+    <br>
+    <p>Enter your letter or word guess:</p>
+    <input type="text" name="guess" onfocus="this.value=''" id="inputGuess"/>
+    <button onclick="game.attemptGuess();">Guess</button>
+   
+    <!-- Show Results -->
+    <p id="pHidden"></p>
+
+    <!-- Show Results -->
+    <p id="pScore"></p>
+
+    <!-- Show Results -->
+    <p id="pRounds"></p>
+
+
+    <button onclick="game.resetGame();">Reset Game</button>
+    
+    <!-- Start Script -->
+    <script type="text/javascript" src="assets/javascript/hangman.js"></script>
+
+</body>
+</html>
