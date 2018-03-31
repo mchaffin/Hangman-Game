@@ -108,7 +108,7 @@ var game = {
             if (this.rounds == this.maxAttempts-1) {
                 document.getElementById("pStatus").innerHTML = "WARNING. You're about to make Mickey look really bad."
                 }
-            if (this.rounds >= this.maxAttempts) {
+            if (this.rounds > this.maxAttempts) {
                 this.losses++;
                 // could reset game automatically
                 this.resetGame();
